@@ -28,6 +28,8 @@
 #include "text/text.h"
 #include "gfx/gfx.h"
 
+#include "organisa/display.h"
+
 /* Display Areas */
 
 #define   ORG_DISP_ABILITIES   (1)

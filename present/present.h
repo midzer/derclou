@@ -57,6 +57,10 @@
 #include "landscap/landscap.h"
 #endif
 
+/*#ifndef MODULE_PRESENTA
+#include "present/presenta.h"
+#endif*/
+
 #define PRESENT_AS_TEXT       1
 #define PRESENT_AS_BAR        2
 #define PRESENT_AS_NUMBER     3

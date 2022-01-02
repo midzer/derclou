@@ -25,6 +25,8 @@ extern unsigned _stklen = 16 * 1024;
 
 #include "SDL.h"
 
+#include <emscripten.h>
+
 void *StdBuffer0 = NULL;
 void *StdBuffer1 = NULL;
 
@@ -164,7 +166,9 @@ static bool tcInit(void)
 
     if (!(GamePlayMode & GP_NO_SAMPLES))
         sndInitFX();
-
+    
+    emscripten_cancel_main_loop();
+    
     ShowIntro();
 
     /* Start game. */
@@ -678,7 +682,7 @@ static void parseOptions(int argc, char *argv[])
 
 /**********************************************************/
 int main(int argc, char **argv)
-{
+{   
     bool res;
     const char *result;
 

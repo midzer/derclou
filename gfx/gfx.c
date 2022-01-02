@@ -22,6 +22,8 @@
 #include <assert.h>
 #include "SDL.h"
 
+#include <emscripten.h>
+
 #include "base/base.h"
 
 #include "gfx/gfx.h"
@@ -98,14 +100,14 @@ void gfxInit(void)
 
     gfxSetGC(NULL);
 
-    /* diese RP mÅssen nur ein Bild maximaler Grî·e aufnehmen kînnen */
-    /* in anderen Modulen wird vorausgesetzt, da· alle RastPorts gleich */
-    /* gro· sind und auch gleich gro· wie die StdBuffer sind */
+    /* diese RP mÔøΩssen nur ein Bild maximaler GrÔøΩÔøΩe aufnehmen kÔøΩnnen */
+    /* in anderen Modulen wird vorausgesetzt, daÔøΩ alle RastPorts gleich */
+    /* groÔøΩ sind und auch gleich groÔøΩ wie die StdBuffer sind */
     /* StdBuffer = 61 * 1024 = 62464, Mem: 62400 */
 
-    /* Ausnahme (nachtrÑglich) : der RefreshRP ist nur 320 * 140 Pixel gro·!! */
+    /* Ausnahme (nachtrÔøΩglich) : der RefreshRP ist nur 320 * 140 Pixel groÔøΩ!! */
 
-    gfxInitMemRastPort(&StdRP0InMem, SCREEN_WIDTH, SCREEN_HEIGHT); /* CMAP mu· auch Platz haben ! */
+    gfxInitMemRastPort(&StdRP0InMem, SCREEN_WIDTH, SCREEN_HEIGHT); /* CMAP muÔøΩ auch Platz haben ! */
     gfxInitMemRastPort(&StdRP1InMem, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     gfxInitMemRastPort(&AnimRPInMem, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -114,7 +116,7 @@ void gfxInit(void)
 
     gfxInitMemRastPort(&LSFloorRPInMem, SCREEN_WIDTH, 32);
 
-    /* der RefreshRP mu· den ganzen Bildschirm aufnehmen kînnen */
+    /* der RefreshRP muÔøΩ den ganzen Bildschirm aufnehmen kÔøΩnnen */
     gfxInitMemRastPort(&RefreshRPInMem, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     gfxInitMemRastPort(&ScratchRP, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -606,7 +608,7 @@ void gfxSetFont(GC *gc, Font *font)
     gc->font = font;
 }
 
-/* berechnet die LÑnge eines Textes in Pixel */
+/* berechnet die LÔøΩnge eines Textes in Pixel */
 U16 gfxTextWidth(GC *gc, const char *txt, size_t len)
 {
     size_t w;
@@ -673,9 +675,9 @@ void gfxPrepareColl(U16 collId)
 
 	/*
          * coll->prepared wird nicht mit dem ScratchRP initialisert, da
-	 * es sonst zu Inkonsistenzen kommen kînnte. Collections im Scratch
-	 * werden als nicht vorbereitet betrachtet, da der ScratchRP stÑndig
-	 * durch andere Bilder Åberschrieben wird
+	 * es sonst zu Inkonsistenzen kommen kÔøΩnnte. Collections im Scratch
+	 * werden als nicht vorbereitet betrachtet, da der ScratchRP stÔøΩndig
+	 * durch andere Bilder ÔøΩberschrieben wird
          */
         coll->prepared = NULL;
     }
@@ -991,17 +993,20 @@ static Uint32 timeLeft(Uint32 interval)
 
 void gfxWaitTOF(void)
 {
-    SDL_Delay(timeLeft(40));
+    /*SDL_Delay(timeLeft(40));*/
+    emscripten_sleep(timeLeft(40));
 }
 
 void gfxWaitTOR(void)
 {
-    SDL_Delay(timeLeft(20));
+    /*SDL_Delay(timeLeft(20));*/
+    emscripten_sleep(timeLeft(20));
 }
 
 void gfxWaitTOS(void)
 {
-    SDL_Delay(250);
+    /*SDL_Delay(250);*/
+    emscripten_sleep(250);
 }
 
 void gfxClearArea(GC *gc)
@@ -1321,8 +1326,8 @@ void gfxILBMToRAW(const U8 *src, U8 *dst, size_t size)
 		pic = pic1;	/* Anfang der aktuellen Zeile */
 		b = ((w + 15) & 0xfff0);
 		do {
-		    a = *sp;	/* Kommando (wiederholen oder Åbernehmen */
-		    sp++;	/* nÑchstes Zeichen */
+		    a = *sp;	/* Kommando (wiederholen oder ÔøΩbernehmen */
+		    sp++;	/* nÔøΩchstes Zeichen */
 		    if (a > 128) {	/* Zeichen wiederholen */
 
 			a = 257 - a;
@@ -1334,7 +1339,7 @@ void gfxILBMToRAW(const U8 *src, U8 *dst, size_t size)
 			    pic += 8;
 			    b -= 8;
 			}
-		    } else {	/* Zeichen Åbernehmen */
+		    } else {	/* Zeichen ÔøΩbernehmen */
 
 			for (x = 0; x <= a; x++) {
 			    y = *sp;
@@ -1580,7 +1585,7 @@ void ShowIntro(void)
             CDROM_StopAudioTrack();
         }
 
-        if (!dskBuildPathName(DISK_CHECK_FILE, "intropix", names[anims], pathName)) {
+        if (!dskBuildPathName(DISK_CHECK_FILE, "assets", names[anims], pathName)) {
             continue;
         }
 

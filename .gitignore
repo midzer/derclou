@@ -1,0 +1,11 @@
+DATA/
+DATADISK/
+INTROPIX/
+PICTURES/
+SAMPLES/
+SOUNDS/
+TEXTS/
+*.o
+assets_orig/
+assets/
+index.*

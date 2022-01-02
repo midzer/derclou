@@ -122,7 +122,7 @@ typedef S16 word;
 #define STORY_DAT_DEMO          "tcstory.dem"
 
 /*
- * Nummern der Textdateien in denen die MenÅs stehen
+ * Nummern der Textdateien in denen die MenÔøΩs stehen
  *
  * siehe Texts.list im Verzeichnis Texts
  *
@@ -157,14 +157,14 @@ typedef S16 word;
  *
  */
 
-#define PICTURE_DIRECTORY	"pictures"
-#define TEXT_DIRECTORY		"texts"
+#define PICTURE_DIRECTORY	"assets"
+#define TEXT_DIRECTORY		"assets"
 #define INCLUDE_DIRECTORY	"include"
-#define DATA_DIRECTORY		"data"
-#define SOUND_DIRECTORY 	"sounds"
-#define SAMPLES_DIRECTORY	"samples"
+#define DATA_DIRECTORY		"assets"
+#define SOUND_DIRECTORY 	"assets"
+#define SAMPLES_DIRECTORY	"assets"
 
-#define DATADISK                "datadisk"
+#define DATADISK                "assets"
 
 #define BUILD_DATA_NAME 	"tcbuild"
 #define MAIN_DATA_NAME		"tcmain"

@@ -14,6 +14,8 @@
 
 #include "present/present.h"
 
+#include "present/presenta.h"
+
 void InitEvidencePresent(U32 nr, LIST * presentationData, LIST * texts)
 {
     Evidence e = dbGetObject(nr);
@@ -160,7 +162,7 @@ void InitToolPresent(U32 nr, LIST * presentationData, LIST * texts)
     toolRequiresAll(nr, OLF_INCLUDE_NAME | OLF_NORMAL, Object_Ability);
 
     if (!LIST_EMPTY(ObjectList)) {
-	AddPresentTextLine(presentationData, NULL, 0, texts, 8);	/* "benîtigt Wissen Åber..." */
+	AddPresentTextLine(presentationData, NULL, 0, texts, 8);	/* "benÔøΩtigt Wissen ÔøΩber..." */
 
 	for (n = (NODE *) LIST_HEAD(ObjectList); NODE_SUCC(n);
 	     n = (NODE *) NODE_SUCC(n)) {

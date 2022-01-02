@@ -22,6 +22,8 @@
 
 #include "organisa/organisa.h"
 
+#include "organisa/display.h"
+
 U32 tcChooseDestBuilding(U32);
 U32 tcChooseEscapeCar(U32);
 U32 tcChooseDriver(U32);
@@ -41,7 +43,7 @@ ubyte tcCheckOrganisation(void);
 
 /* display functions */
 
-void tcInitDisplayOrganisation(void);
+/*void tcInitDisplayOrganisation(void);
 void tcDoneDisplayOrganisation(void);
 
 void tcDisplayOrganisation(void);
@@ -49,11 +51,11 @@ void tcDisplayOrganisation(void);
 void tcDisplayCommon(void);
 void tcDisplayPerson(U32 displayMode);
 void tcDisplayAbilities(U32 personNr, U32 displayData);
-void tcDisplayTools(U32 personNr, U32 displayData);
+void tcDisplayTools(U32 personNr, U32 displayData);*/
 
 struct Organisation Organisation;
 
-#include "organisa/display.c"
+/*#include "organisa/display.h"*/
 
 void tcResetOrganisation(void)
 {

@@ -1,6 +1,6 @@
 WARN	= -pedantic -Wall -Wmissing-prototypes -Wmissing-declarations -Wsign-compare
 OPT	= -O2 -funroll-loops
-CC      = gcc -I. -std=c89 $(OPT) $(WARN) -g
+CC      = emcc -I. -std=c89 $(OPT) $(WARN) -g
 O_FILES = anim/sysanim.o \
 	  base/base.o \
 	  cdrom/cdrom.o \
@@ -30,7 +30,7 @@ O_FILES = anim/sysanim.o \
 	  living/bob.o \
 	  living/living.o \
 	  memory/memory.o \
-	  organisa/organisa.o \
+	  organisa/organisa.o organisa/display.o \
 	  planing/graphics.o \
 	  planing/guards.o \
 	  planing/io.o \
@@ -41,7 +41,7 @@ O_FILES = anim/sysanim.o \
 	  planing/support.o \
 	  planing/system.o \
 	  planing/sync.o \
-	  present/present.o \
+	  present/present.o present/presenta.o \
 	  present/interac.o \
 	  random/random.o \
 	  scenes/cars.o \
@@ -62,10 +62,10 @@ O_FILES = anim/sysanim.o \
 
 
 derclou: $(O_FILES)
-	$(CC) -o $@ */*.o `sdl2-config --libs` -lm
+	$(CC) -o $@ */*.o -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["lbm"]' -lm -o index.html -s WASM=1 -s ASYNCIFY --preload-file assets
 
 .c.o:
-	$(CC) `sdl2-config --cflags` -c -o $@ $<
+	$(CC) -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["lbm"]' -c -o $@ $<
 
 clean:
 	rm -f *~ *.o */*.o derclou

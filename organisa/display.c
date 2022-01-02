@@ -18,6 +18,21 @@
   distribution.
  ****************************************************************************/
 
+#include "gfx/gfx.h"
+#include "scenes/scenes.h"
+
+/*#include "organisa/display.h"*/
+
+/*extern void tcInitDisplayOrganisation(void);
+extern void tcDoneDisplayOrganisation(void);
+
+extern void tcDisplayOrganisation(void);
+
+extern void tcDisplayCommon(void);
+extern void tcDisplayPerson(U32 displayMode);
+extern void tcDisplayAbilities(U32 personNr, U32 displayData);
+extern void tcDisplayTools(U32 personNr, U32 displayData);*/
+
 #define   ORG_DISP_GUY_Y           60
 #define   ORG_DISP_ABILITIES_Y     75
 #define   ORG_DISP_GUY_WIDTH       80
@@ -74,7 +89,7 @@ void tcDisplayCommon(void)
     gfxSetGC(l_gc);
     gfxShow(ORG_PICT_ID, GFX_ONE_STEP | GFX_NO_REFRESH, 0, -1, -1);
 
-    /* Geb„ude anzeigen  */
+    /* Gebï¿½ude anzeigen  */
 
     gfxSetFont(l_gc, menuFont);
     gfxSetDrMd(l_gc, GFX_JAM_1);
@@ -159,7 +174,7 @@ void tcDisplayCommon(void)
     gfxPrint(l_gc, line, 35, GFX_PRINT_LEFT);
 
 	/*************************************************************
-	 *  Fluchtweg-l„nge
+	 *  Fluchtweg-lï¿½nge
 	 */
 
     gfxSetRect(106, 106);
