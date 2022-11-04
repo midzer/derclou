@@ -611,7 +611,7 @@ static void parseOptions(int argc, char *argv[])
     setup.CDRom         = false;
     setup.Debug         = 1;
     setup.CDAudio       = false;
-    setup.Scale         = 1;
+    setup.Scale         = 2;
 
     for (i = 1; i < argc; i++) {
         s = argv[i];
