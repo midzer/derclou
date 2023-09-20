@@ -1,5 +1,5 @@
 WARN	= -pedantic -Wall -Wmissing-prototypes -Wmissing-declarations -Wsign-compare
-OPT	= -Oz -funroll-loops
+OPT	= -flto -O3 -funroll-loops -fno-exceptions -fno-rtti
 CC      = emcc -I. -std=c89 $(OPT) $(WARN)
 O_FILES = anim/sysanim.o \
 	  base/base.o \
@@ -62,10 +62,10 @@ O_FILES = anim/sysanim.o \
 
 
 derclou: $(O_FILES)
-	$(CC) -o $@ */*.o -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["lbm"]' -lm -o index.html -s WASM=1 -s ASYNCIFY --preload-file assets
+	$(CC) -o $@ */*.o -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sSDL2_IMAGE_FORMATS='["lbm"]' -o index.html -sASYNCIFY --preload-file assets --closure 1
 
 .c.o:
-	$(CC) -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["lbm"]' -c -o $@ $<
+	$(CC) -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sSDL2_IMAGE_FORMATS='["lbm"]' -c -o $@ $<
 
 clean:
 	rm -f *~ *.o */*.o derclou
